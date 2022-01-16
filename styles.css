@@ -1,0 +1,178 @@
+body{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    background-color:#D8CFD0;
+
+    display:flex;
+    flex-flow:column nowrap;
+    margin:0;
+    height:100vh;
+}
+
+.header{
+    margin-left:40px;
+    color:#413F3D;
+    margin:0;
+}
+.headerContainer{
+    background-color:#F2F1EF;
+    display:flex;
+    padding:20px;
+    margin-bottom:40px;
+}
+#footer{
+    margin-top:auto;
+    display:flex;
+    justify-content:center;
+    background-color:#413F3D;
+    color:white;
+}
+a {
+    text-decoration:none;
+    color:white;
+}
+
+.button{
+    background-color:#697184;
+    padding:1em 2em;
+    color:white;
+    border:0;
+    border-radius:5px;
+    margin-left:40px;
+    display:flex;
+    width:120px;
+}
+
+.button:hover{
+    background:#333;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    z-index:1;
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    overflow:auto;
+    background-color:rgba(0,0,0,0.5);
+}
+
+.modal-content{
+    background-color:#D8CFD0;
+    margin:5% auto;
+    padding:20px;
+    width:250px;
+    box-shadow:0 5px 8px 0 rgba(0,0,0,0.2),
+    0 7px 20px 0 rgba(0,0,0,0.17);
+    animation-name:modalopen;
+    animation-duration:1s;
+}
+
+.inputContainer{
+    padding-bottom:20px;
+}
+
+#errorFieldTitle{
+    font-size:12px;
+    color:rgb(175, 52, 52);
+    display:none;
+    z-index:2;
+    position:absolute;
+}
+#errorFieldAuthor{
+    font-size:12px;
+    color:rgb(175, 52, 52);
+    display:none;
+    z-index:2;
+    position:absolute;
+}
+#errorFieldPages{
+    font-size:12px;
+    color:rgb(175, 52, 52);
+    display:none;
+    z-index:2;
+    position:absolute;
+}
+
+.overlay{
+    z-index:2;
+    width:100px;
+    position:absolute;
+}
+
+#closeBtn{
+    color:#F2F1EF;
+    float:right;
+    font-size:30px;
+}
+
+#closeBtn:hover,#closeBtn:focus{
+    color:#000;
+    text-decoration:none;
+    cursor:pointer;
+}
+
+#addBook{
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:18px;
+    border-width:3px;
+    border-style:solid;
+    border-color:#697184;
+    border-radius:5px;
+    background-color:#697184;
+    color:white;
+    width:80px;
+}
+
+#bookContainer{
+    display:flex;
+    flex-flow:row wrap;
+    padding:30px;
+    
+}
+
+.bookCard{
+    border-style:solid;
+    border-color:#413F3D;
+    border-radius:15px;
+    padding:30px;
+    margin:10px;
+    background-color:#B1A6A4;
+    font-size:30px;
+}
+
+.title{
+    font-style:italic;
+}
+
+.removeBtn{
+    border-width:3px;
+    border-style:solid;
+    border-color:#697184;
+    border-radius:5px;
+    background-color:#697184;
+    color:white;
+    margin-right:10px;
+}
+
+.Read{
+    border-width:3px;
+    border-style:solid;
+    border-color:#68a35c;
+    border-radius:5px;
+    background-color:#68a35c;
+    color:white;
+}
+.Unread{
+    border-width:3px;
+    border-style:solid;
+    border-color:#a75862;
+    border-radius:5px;
+    background-color:#a75862;
+    color:white;
+}

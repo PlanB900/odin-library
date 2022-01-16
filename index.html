@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Library</title>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+<body>
+<div class="headerContainer">
+    <h1 class="header">Book Tracker</h1>
+</div>
+
+<button id="modalBtn" class="button">Add book</button>
+
+<div id="addBookForm" class="modal">
+
+    <div class="modal-content">
+        <span id="closeBtn">&times;</span>
+
+        <div class="inputContainer">
+            <div>Title</div>
+            <input type="text" id="titleField">
+            <div id="errorFieldTitle">Please enter a title.</div>
+        </div>
+
+        <div class="inputContainer">
+            <div>Author</div>
+            <input type="text" id="authorField">
+            <div id="errorFieldAuthor">Please enter an author.</div>
+        </div>
+
+        <div class="inputContainer">
+            <div>Pages</div>
+            <input type="text" id="pagesField">
+            <div id="errorFieldPages">Please enter a page number.</div>
+        </div>
+
+        <div id="markReadContainer">Mark as read:
+            <button id="markReadBtn" class="Unread">Unread</button>
+        </div>
+
+        <button id="addBook">Add</button>
+    </div>
+</div>
+
+<div id="bookContainer"></div>
+
+<div id="footer"><a href="https://github.com/PlanB900/odin-library">View on Github</a></div>
+
+
+
+
+
+
+
+<script src="script.js"></script>
+</body>
+</html>
