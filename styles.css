@@ -75,24 +75,9 @@ a {
     padding-bottom:20px;
 }
 
-#errorFieldTitle{
+.errorField{
     font-size:12px;
     color:rgb(175, 52, 52);
-    display:none;
-    z-index:2;
-    position:absolute;
-}
-#errorFieldAuthor{
-    font-size:12px;
-    color:rgb(175, 52, 52);
-    display:none;
-    z-index:2;
-    position:absolute;
-}
-#errorFieldPages{
-    font-size:12px;
-    color:rgb(175, 52, 52);
-    display:none;
     z-index:2;
     position:absolute;
 }
@@ -104,7 +89,7 @@ a {
 }
 
 #closeBtn{
-    color:#F2F1EF;
+    color:#494949;
     float:right;
     font-size:30px;
 }
