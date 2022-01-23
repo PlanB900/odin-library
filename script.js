@@ -28,28 +28,24 @@ modalBtn.addEventListener('click',openModal);
 //Function to open screen
 function openModal(){
    modal.style.display = 'block';
+   closeBtn.addEventListener('click',closeModal, {once: true});
+   window.addEventListener('click',clickOutside);
 }
-
-//Modal close listener
-closeBtn.addEventListener('click',closeModal);
 
 //Function to close modal
 function closeModal(){
     modal.style.display = 'none';
 }
 
-//Listen to outside click
-window.addEventListener('click',clickOutside);
-
 //Function to close modal if outside click
 function clickOutside(e){
     if(e.target == modal){
-        modal.style.display = 'none';
+        closeModal();
     }
 }
 
-//Listen for button click to add book to library
-addBook.addEventListener('click',()=>{
+//Checks if field input types are correct
+function fieldCheck () {
     if(titleField.value == ""){
         errorFieldTitle.style.display = "flex";
     }else{errorFieldTitle.style.display = "none"};
@@ -70,74 +66,76 @@ addBook.addEventListener('click',()=>{
         titleField.value = "";
         authorField.value = "";
         pagesField.value = "";
-        createCard();
+        createBookCard(book)
+        // createCard();
     };
-});
+}
+
+//Listen for button click to add book to library
+addBook.addEventListener('click',fieldCheck);
 
 //Book constructor
-function Book(title,author,pages,isRead){
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.isRead = isRead;
-}
-Book.prototype.isRead = function(){
-    if(this.isRead == false){
-        this.isRead = true;
-    }else{
-        this.isRead = false;
-    };
+class Book {
+
+    constructor (title, author, pages, isRead){
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.isRead = isRead
+    }
+
+    isRead () {
+        if(this.isRead == false){
+            this.isRead = true;
+        }else{
+            this.isRead = false;
+        };
+    }
 }
 
-
-//Display card for latest element in library
-function createCard(){
+//Create book card template
+function createBookCardTemplate() {
     let bookCard = document.createElement('div');
-    bookCard.className = "bookCard";
-    bookContainer.appendChild(bookCard);
-
     let removeBtn = document.createElement('button');
+    let markReadCardBtn = document.createElement('button');
+    let bookCardInfo = document.createElement('div');
+
+    bookCard.className = "bookCard";
     removeBtn.className = 'removeBtn';
     removeBtn.innerHTML = "remove";
-    bookCard.appendChild(removeBtn);
-
-    let markReadCard = document.createElement('button');
-    markReadCard.className = "markReadCard";
-    bookCard.appendChild(markReadCard);
-
-    let bookCardInfo = document.createElement('div');
+    markReadCardBtn.className = "markReadCard";
     bookCardInfo.className = "bookCardInfo";
+
+    bookContainer.appendChild(bookCard);
+    bookCard.appendChild(removeBtn);
+    bookCard.appendChild(markReadCardBtn);
     bookCard.appendChild(bookCardInfo);
 
-    //Takes the latest 'addition' to the library, iterates through each 
-    //key-value item, and appends it as an element to bookCardInfo
-    //Also adds pages to the page element
-    for (let key in library[library.length-1]){
+    return {bookCardInfo, markReadCardBtn}
+}
 
+//creates a card for a given book
+function createBookCard(book){
+
+    let template = createBookCardTemplate()
+    template.markReadCardBtn.textContent = book.isRead
+    book.isRead == "Read" ? template.markReadCardBtn.classList.add("Read") : template.markReadCardBtn.classList.add("Unread")
+
+    for (let key in book){
         if(key !== "isRead"){
             let item = document.createElement('div');
-            item.textContent = library[library.length-1][key];
+            item.textContent = book[key];
             if(key == "title"){item.classList.add('title')};
-            bookCardInfo.appendChild(item);
+            template.bookCardInfo.appendChild(item);
 
-
-            if(key == "pages" && library[library.length-1][key] > 1){
+            if(key == "pages" && book.key > 1){
                 item.textContent += " pages";
-            }else if(key == "pages" && library[library.length-1][key] == 1){
+            }else if(key == "pages" && book[key] == 1){
                 item.textContent += " page";
             };
-
-        };
-
-        if(key == "isRead"){
-            markReadCard.textContent = library[library.length-1][key];
-            if(markReadCard.textContent == "Read"){markReadCard.classList.add("Read")}
-            else if(markReadCard.textContent == "Unread"){markReadCard.classList.add("Unread")};
-        };
-
+        }
     };
-};
-
+}
 
 //Listen for remove button click
 document.addEventListener('click',(e)=>{
@@ -146,8 +144,8 @@ document.addEventListener('click',(e)=>{
         //Matches info in bookCard with each book in the library, if they match
         //it is removed from the library
         library.forEach(book=>{
-            if(book.title == e.target.nextElementSibling.firstChild.textContent &&
-                book.author == e.target.nextElementSibling.firstChild.nextElementSibling.textContent){
+            if(book.title == e.target.nextElementSibling.nextElementSibling.firstChild.textContent &&
+                book.author == e.target.nextElementSibling.nextElementSibling.firstChild.nextElementSibling.textContent){
                     library.splice(library.indexOf(book),1);
                 };
         });
